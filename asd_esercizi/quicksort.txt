@@ -1,0 +1,18 @@
+quicksort(int *a, int lower, int upper){
+  int pivot = a[(upper-lower)/2];
+  int l=lower, r=upper;
+
+  inpila([lower,upper])
+    while(!empty)
+  
+  while(r!=l){
+    while (l<r && a[l]<=pivot)
+      l++;
+    while (r>l && a[r]>pivot)
+      r--;
+    if (r!=l)
+      swap(a,l,r);
+  }
+  quicksort(a, lower, l);
+  quicksort(a, l+1, upper);
+}

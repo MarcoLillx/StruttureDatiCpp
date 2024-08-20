@@ -1,0 +1,23 @@
+Dato un albero nario con n nodi, contare i sottoalberi che hanno somma dei nodi pari ad un intero k, s indica il numero di sottoalberi
+
+int somma(tree<int> T,int k){
+ int s=0;
+ somma(T,k,T.root(),s);
+ return s;
+}
+
+int somma(tree<int> T,int k,tree<int>::node n, int&s){
+ int acc = T.read(n);
+ if(!T.foglia(n)){
+   tree<int>::node f;
+   f = T.primofiglio(n);
+   while(!T.ultimofratello(f)){
+      f = T.succfratello(f);
+      acc += somma(T,k,f,s);
+   }
+   acc += somma(T,k,f,s);
+ }
+ if(acc==k)
+   s++;
+ return acc;
+}

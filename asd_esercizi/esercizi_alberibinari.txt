@@ -1,0 +1,20 @@
+Dato un albero binario con n nodi, contare i sottoalberi che hanno somma dei nodi pari ad un intero k, s indica il numero di sottoalberi
+
+int somma(bintree<int> T,int k){
+ int s=0;
+ somma(T,k,T.root(),s);
+ return s;
+}
+
+int somma(bintree<int> T,int k,bintree<int>::node n,int &s){
+ int sx=0;
+ int dx=0;
+ if(!T.sx_empty(n))
+   sx = somma(T,k,T.sx(n),s);
+ if(!T.dx_empty(n))
+   dx = somma(T,k,T.dx(n),s);
+ int somma = sx + dx + T.read(n);
+ if(somma==k)
+   s++;
+ return(somma);
+}

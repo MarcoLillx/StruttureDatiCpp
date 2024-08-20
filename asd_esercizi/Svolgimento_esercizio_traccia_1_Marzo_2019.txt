@@ -1,0 +1,54 @@
+class histogram{
+public:
+	//incrementa di 1 la frequenza del bin v
+	void add(int v){
+		mypair<K,E>*p = H.find(v);
+		if(p==nullptr){
+			mypair<K,E> newp;
+			newp->first = v;
+			newp->second = 1;
+			H.insert(newp);
+		}
+		else{
+			H.modify(p->first,p->second+1);
+		}
+	};
+	//decrementa di 1 la requenza del bin v
+	void remove(int v){
+		mypair<K,E>*p = H.find(v);
+		if(p!=nullptr){
+			H.modify(p->first,p->second-1);
+		}
+	}
+	//restituisce la moda dell'istogramma(il bin con frequenza massima)
+	int mode();
+	//restitusice la media dell'istogramma(la media dei valori dei bin)
+	double mean(){
+		List<int> Ks = H.keys();
+		List<int>::position p = Ks.begin();
+		double acc = 0;
+		while(!Ks.end(p)){
+			mypair<K,E>*p = H.find(Ks.read(p));
+			acc += p->second;
+			Ks.next(p);
+		}
+		return acc/H.size();
+	}
+	//stampa l'istogramma
+	void print(){
+		List<int> Ks = H.keys();
+		List<int>::position p = Ks.begin();
+		while(!Ks.end(p)){
+			std::cout << endl << Ks.read(p) << " " ;
+			mypair<K,E>*p = H.find(Ks.read(p));
+			for(int i = 0;i<p->second;i++)
+				std::cout << "*";
+			Ks.next(p);
+		}
+	}
+	
+	
+
+private:
+	
+}
